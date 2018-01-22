@@ -43,6 +43,7 @@ class Home extends Component {
 
   getMessage = (e) => {
     this.setState({ message: e.target.value });
+    console.log('test')
 
   }
 
