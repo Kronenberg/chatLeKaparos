@@ -8,14 +8,15 @@ import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk';
 import  { runTheApp } from '../actions/globalActions';
 import  { fetchPosts } from '../actions/events' ;
-const fbConfig = {
-	apiKey: "AIzaSyC29RdE1-GOOrw_db5EhI0bn4hrWhR3Z1s",
-	authDomain: "masa-projects-posts.firebaseapp.com",
-	databaseURL: "https://masa-projects-posts.firebaseio.com",
-	projectId: "masa-projects-posts",
-	storageBucket: "masa-projects-posts.appspot.com",
-	messagingSenderId: "457533567638"
-}
+
+var fbConfig = {
+	apiKey: "AIzaSyAaq4JGtoUlAD7NkctraMGkmAJGOkqhsBo",
+	authDomain: "voxer-chat.firebaseapp.com",
+	databaseURL: "https://voxer-chat.firebaseio.com",
+	projectId: "voxer-chat",
+	storageBucket: "",
+	messagingSenderId: "748382820140"
+};
 
 const config = {
 	userProfile: 'users', // firebase root where user profiles are stored

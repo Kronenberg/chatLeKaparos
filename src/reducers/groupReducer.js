@@ -3,6 +3,7 @@ import {
     GET_ALL_GROUPS_SUCCESS,
     GET_ALL_GROUPS_REJECTED
 } from '../ActionsTYPES/TYPES';
+import { messaging } from 'firebase';
 
 const initialState = {
     pending: false,
@@ -22,12 +23,31 @@ function groupReducer(state = initialState, action) {
             }
         }
         case GET_ALL_GROUPS_SUCCESS: {
+            var list = [];
+            if (!action.payload) {
+                console.log('skip');
+            } else {
+                for (var key in action.payload) {
+                    if (action.payload.hasOwnProperty(key)) {
+                        let message = action.payload[key].message ? action.payload[key].message : '';
+                        let name = action.payload[key].name ? action.payload[key].name : '';
+                        if (message.trim().length > 0) {
+                            list.push({
+                                message: message,
+                                name: name,
+                                key: key
+                            })
+                        }
+                    }
+                }
+            }
+           
             return {
                 ...state,
                 success: true,
                 pending: false,
                 rejected: false,
-                groups: action.payload
+                groups: list.reverse()
             }
         }
         case GET_ALL_GROUPS_REJECTED: {

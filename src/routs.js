@@ -10,9 +10,6 @@ import GroupPage from './components/GroupPage/GroupPage';
 const Routs = () => (
     <Switch>
       <Route exact path='/' component={Home} />
-      <Route exact path='/:groupTitle' component={GroupPage} />
-      <Route path='/programs' component={Programs} />
-      <Route path='/chat' component={Chat} />
     </Switch>
   )
 

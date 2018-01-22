@@ -1,0 +1,54 @@
+body {
+
+  background-image: url("../../assets/background.jpg");
+
+}
+
+.message .name { 
+  color:black; 
+}
+
+li {
+  list-style: none;
+  padding: 0;
+  margin: 15px;
+}
+ul {
+  padding: 0;
+}
+.mainContainer {
+  width: 100%;
+}
+.chatWindow {
+  width: 800px;
+  height: 651px;
+  margin: 0 auto;
+  background: #F2F5F8;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.messages {
+  overflow: scroll;
+  height: 615px;
+  width: 800px;
+  
+}
+.message .m {
+  color: white;
+  background: #86BB71;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+input {
+  height: 32px;
+  width: 98%;
+  margin-top: 5px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  padding-left: 10px;
+}
