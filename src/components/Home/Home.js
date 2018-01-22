@@ -13,7 +13,8 @@ class Home extends Component {
       message: '',
       email: '',
       password: '',
-      currentUser: ''
+      currentUser: '',
+      test: 'asd'
     }
   }
 
