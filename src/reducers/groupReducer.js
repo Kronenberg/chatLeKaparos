@@ -53,17 +53,20 @@ function groupReducer(state = initialState, action) {
                     if (action.payload.hasOwnProperty(key)) {
                         let message = action.payload[key].message ? action.payload[key].message : '';
                         let name = action.payload[key].name ? action.payload[key].name : '';
+                        let accountColor = action.payload[key].accountColor ? action.payload[key].accountColor : '';
                         if (message.trim().length > 0) {
                             list.push({
                                 message: message,
                                 name: name,
+                                accountColor: accountColor,
                                 key: key
                             })
                         }
                     }
                 }
+                notifyMe(list[list.length - 1].message);
             }
-            notifyMe(list[list.length - 1].message);
+          
             return {
                 ...state,
                 success: true,

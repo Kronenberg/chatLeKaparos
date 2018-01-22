@@ -9,8 +9,6 @@ export const fetchPosts = () => (dispatch, getState, getFirebase) => {
 
     posts.on('value', function (snapshot) {
         // notifyMe('New Message!');
-        console.log(snapshot.val());
-        console.log(snapshot.val())
         dispatch({ type: GET_ALL_GROUPS_SUCCESS, payload: snapshot.val() });
     });
 };

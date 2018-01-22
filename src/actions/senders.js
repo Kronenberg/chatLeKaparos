@@ -25,7 +25,7 @@ export const getAllGroups = () =>
 
 
 
-export const sendMessage = (post) => 
+export const sendMessage = (post, accountColor) => 
     (dispatch, getState, getFirebase) => {
 
         if (!localStorage.getItem('userName')) {
@@ -34,7 +34,8 @@ export const sendMessage = (post) =>
 
         const m = {
             name: localStorage.getItem('userName'),
-            message: post
+            message: post,
+            accountColor: accountColor
         }
         const firebase = getFirebase()
         firebase.database().ref(`messages/`)

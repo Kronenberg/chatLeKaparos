@@ -14,7 +14,8 @@ class Home extends Component {
       email: '',
       password: '',
       currentUser: '',
-      test: 'asd'
+      test: 'asd',
+      accountColor: 'black'
     }
   }
 
@@ -33,7 +34,7 @@ class Home extends Component {
       if (!localStorage.getItem('userName') && this.state.message.length < 0) {
           console.log('please log in');
       } else {
-        this.props.sendMessage(this.state.message);
+        this.props.sendMessage(this.state.message, this.state.accountColor);
         this.setState({ message: '' });
       }
 
@@ -59,23 +60,41 @@ class Home extends Component {
   showCurrentUser = () => {
 
   }
+
+  generateRandomColor = () => {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+   
+      this.setState({ accountColor: color });
+      console.log(this.state.accountColor);
+
+
+  }
   render(){
     console.log(this.props.groupStatus ? this.props.groupStatus.groups : []);
     const messages = this.props.groupStatus ? this.props.groupStatus.groups
     // .reverse()
     .map(m => (
-      <li key={m.key} className="message"><span className="name">{m.name}</span> : <span className="m">{m.message}</span></li>
+      <li key={m.key} className="message"><span className="name">{m.name}</span> : <span style={{background: m.accountColor ? m.accountColor : 'lightgreen'}}  className="m">{m.message}</span></li>
     )) : [];
     return(
       <div className="mainContainer">
+        
         <div className="registration" style={{padding: '20px'}}>
         <input onChange={this.createNameForAccount} />
         <button onClick={this.createAccount}>CREATE ACCOUNT</button>
         <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
         <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
         <div style={{ color: 'red' }}>{this.props.auth.rejected ? 'Error on server' : ''}</div>
+       
       </div>
       <div>{!localStorage.getItem('userName') ?  'You are not loged in' : "Welcome to Los Kaparos " +  localStorage.getItem('userName')}</div>
+      <div>TEST THIS FEATURE GUYS :D</div>
+      <button style={{ background: this.state.accountColor, color: "#fff" }} onClick={this.generateRandomColor}>GENERATE RANDOM COLOR TO YOUR MESSAGE</button>
+      
       <div className="chatWindow">
         <div className="messages">
         <ul>
