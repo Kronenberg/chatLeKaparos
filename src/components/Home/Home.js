@@ -19,14 +19,19 @@ class Home extends Component {
     }
   }
 
+  scrollToBottom = () => {
+    const scrollHeight =  this.overFlowArea.scrollHeight;
+    const height =  this.overFlowArea.clientHeight;
+    const maxScrollTop = scrollHeight - height;
+    this.overFlowArea.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+  }
+
   componentWillMount() {
     this.props.getAllGroups();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.groupStatus.groups && nextProps.groupStatus.groups) {
-
-    }
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   sendMessage = (e) => {
@@ -36,9 +41,8 @@ class Home extends Component {
       } else {
         this.props.sendMessage(this.state.message, this.state.accountColor);
         this.setState({ message: '' });
-      }
-
-    
+        // this.overFlowArea.scrollTo(0, this.overFlowArea.scrollHeight);
+      }    
      
   }
 
@@ -70,41 +74,57 @@ class Home extends Component {
    
       this.setState({ accountColor: color });
       console.log(this.state.accountColor);
-
+      
 
   }
   render(){
-    console.log(this.props.groupStatus ? this.props.groupStatus.groups : []);
+    // this.overFlowArea.scrollTo(0, this.overFlowArea.scrollHeight);
+    // console.log(this.props.groupStatus ? this.props.groupStatus.groups : []);
     const messages = this.props.groupStatus ? this.props.groupStatus.groups
     // .reverse()
     .map(m => (
-      <li key={m.key} className="message"><span className="name">{m.name}</span> : <span style={{background: m.accountColor ? m.accountColor : 'lightgreen'}}  className="m">{m.message}</span></li>
+      <li key={m.key} className="message"><span style={{color: m.accountColor ? m.accountColor : 'lightgreen'}} className="name">{m.name.split("@")[0]}</span> : <span style={{background: m.accountColor ? m.accountColor : 'lightgreen'}}  className="m">{m.message}</span></li>
     )) : [];
     return(
       <div className="mainContainer">
         
+        
+      <div className="globalConteiner">
+        <div 
+        className="sideMenu item">
+        <div>
+           
+          <button style={{ background: this.state.accountColor, color: "#fff" }} onClick={this.generateRandomColor}>GENERATE RANDOM COLOR TO YOUR MESSAGE</button>
+        </div>
+          </div>
+        <div 
+        className="chatWindow item">
+          <div ref={(elem) => { this.overFlowArea = elem; }} className="messages">
+          <ul>
+            { this.props.groupStatus.pending ? <img src="https://media.giphy.com/media/xT9DPldJHzZKtOnEn6/giphy.gif" /> : messages }
+          </ul>
+          </div>
+          <form onSubmit={this.sendMessage}>
+              <input placeholder="Message: " value={this.state.message} onChange={this.getMessage} />
+            </form>
+          </div>
+        </div>
+
+
+
+
         <div className="registration" style={{padding: '20px'}}>
-        <input onChange={this.createNameForAccount} />
-        <button onClick={this.createAccount}>CREATE ACCOUNT</button>
-        <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
-        <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
-        <div style={{ color: 'red' }}>{this.props.auth.rejected ? 'Error on server' : ''}</div>
-       
+          <input onChange={this.createNameForAccount} />
+          <button onClick={this.createAccount}>CREATE ACCOUNT</button>
+          <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
+          <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
+          <div style={{ color: 'red' }}>{this.props.auth.rejected ? 'Error on server' : ''}</div>
       </div>
       <div>{!localStorage.getItem('userName') ?  'You are not loged in' : "Welcome to Los Kaparos " +  localStorage.getItem('userName')}</div>
-      <div>TEST THIS FEATURE GUYS :D</div>
-      <button style={{ background: this.state.accountColor, color: "#fff" }} onClick={this.generateRandomColor}>GENERATE RANDOM COLOR TO YOUR MESSAGE</button>
       
-      <div className="chatWindow">
-        <div className="messages">
-        <ul>
-          { this.props.groupStatus.pending ? <img src="https://media.giphy.com/media/xT9DPldJHzZKtOnEn6/giphy.gif" /> : messages }
-        </ul>
-        </div>
-          <form onSubmit={this.sendMessage}>
-            <input value={this.state.message} onChange={this.getMessage} />
-          </form>
-        </div>
+      
+
+        
       </div>
     );
   }

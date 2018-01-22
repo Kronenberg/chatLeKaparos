@@ -72,7 +72,7 @@ function groupReducer(state = initialState, action) {
                 success: true,
                 pending: false,
                 rejected: false,
-                groups: list.reverse()
+                groups: list
             }
         }
         case GET_ALL_GROUPS_REJECTED: {

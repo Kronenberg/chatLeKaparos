@@ -4,6 +4,25 @@ body {
 
 }
 
+
+
+.globalContainer {
+  display: flex;
+  flex-flow: row; 
+  flex-wrap: wrap;
+}
+
+.globalContainer .item {
+  width: 500px;
+  height: 100%;
+  flex: 1;
+}
+
+.sideMenu {
+  width: 220px; 
+}
+
+
 .message .name { 
   color:black; 
 }
@@ -20,14 +39,13 @@ ul {
   width: 100%;
 }
 .chatWindow {
-  width: 800px;
-  height: 651px;
-  margin: 0 auto;
+      height: 668px;
   background: #F2F5F8;
   border-radius: 6px;
-  padding: 12px;
+  background: rgba(0,0,0,0.55);
   font-size: 24px;
   margin-top: 10px;
+
 }
 
 .messages {
@@ -45,10 +63,17 @@ ul {
 
 input {
   height: 32px;
-  width: 98%;
+  width: 97%;
   margin-top: 5px;
   border: none;
   outline: none;
   font-size: 20px;
   padding-left: 10px;
+  border: 1px solid lightgrey;
+  margin-left: 6px;
+  border-radius: 5px;
+}
+
+form {
+  border-top: 1px solid lightgray;
 }
