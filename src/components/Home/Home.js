@@ -116,7 +116,7 @@ class Home extends Component {
           </div>
         <div 
         className="chatWindow item">
-          <div ref={(elem) => { this.overFlowArea = elem; }} className="messages typing">
+          <div ref={(elem) => { this.overFlowArea = elem; }} className="screen typing">
             { this.props.groupStatus.pending ? <img style={{width: '100%', height: '100%'}} src="https://media.giphy.com/media/CdhxVrdRN4YFi/giphy.gif" /> : messages }
           </div>
           <form onSubmit={this.sendMessage}>
