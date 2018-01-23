@@ -77,32 +77,41 @@ class Home extends Component {
       
 
   }
+
+
   render(){
     // this.overFlowArea.scrollTo(0, this.overFlowArea.scrollHeight);
     // console.log(this.props.groupStatus ? this.props.groupStatus.groups : []);
     const messages = this.props.groupStatus ? this.props.groupStatus.groups
     // .reverse()
     .map(m => (
-      <li key={m.key} className="message"><span style={{color: m.accountColor ? m.accountColor : 'lightgreen'}} className="name">{m.name.split("@")[0]}</span> : <span style={{background: m.accountColor ? m.accountColor : 'lightgreen'}}  className="m">{m.message}</span></li>
+      <p 
+          key={m.key} 
+          className="message">
+        <span 
+          style={{color: m.accountColor ? m.accountColor : 'lightgreen'}} 
+          className="name">>: {m.name.split("@")[0]}</span> : 
+        <span 
+          // style={{border: m.accountColor ? m.accountColor : 'lightgreen'}}  
+          className="m"> {m.message}</span>
+      </p>
     )) : [];
     return(
       <div className="mainContainer">
-        
-        
+  
       <div className="globalConteiner">
         <div 
         className="sideMenu item">
         <div>
-           
-          <button style={{ background: this.state.accountColor, color: "#fff" }} onClick={this.generateRandomColor}>GENERATE RANDOM COLOR TO YOUR MESSAGE</button>
+          <div className="typing"><p>{!localStorage.getItem('userName') ?  'You are not loged in' : "Welcome to Los Kaparos " +  localStorage.getItem('userName')}</p></div>
+          <button className="generateColorBtn" style={{ textShadow: this.state.accountColor }} onClick={this.generateRandomColor}>GENERATE RANDOM COLOR TO YOUR MESSAGE</button>
+          
         </div>
           </div>
         <div 
         className="chatWindow item">
-          <div ref={(elem) => { this.overFlowArea = elem; }} className="messages">
-          <ul>
-            { this.props.groupStatus.pending ? <img src="https://media.giphy.com/media/xT9DPldJHzZKtOnEn6/giphy.gif" /> : messages }
-          </ul>
+          <div ref={(elem) => { this.overFlowArea = elem; }} className="messages typing">
+            { this.props.groupStatus.pending ? <img style={{width: '100%', height: '100%'}} src="https://media.giphy.com/media/CdhxVrdRN4YFi/giphy.gif" /> : messages }
           </div>
           <form onSubmit={this.sendMessage}>
               <input placeholder="Message: " value={this.state.message} onChange={this.getMessage} />
@@ -110,20 +119,16 @@ class Home extends Component {
           </div>
         </div>
 
-
-
-
         <div className="registration" style={{padding: '20px'}}>
-          <input onChange={this.createNameForAccount} />
-          <button onClick={this.createAccount}>CREATE ACCOUNT</button>
+          <div className="form">
+            <input onChange={this.createNameForAccount} placeholder="Type your email address: " />
+            <button onClick={this.createAccount}>CREATE ACCOUNT</button>
+          </div>
+         
           <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
           <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
           <div style={{ color: 'red' }}>{this.props.auth.rejected ? 'Error on server' : ''}</div>
       </div>
-      <div>{!localStorage.getItem('userName') ?  'You are not loged in' : "Welcome to Los Kaparos " +  localStorage.getItem('userName')}</div>
-      
-      
-
         
       </div>
     );
