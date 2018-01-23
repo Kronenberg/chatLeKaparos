@@ -12,7 +12,7 @@ export const getAllGroups = () =>
     
     dispatch({ type: GET_ALL_GROUPS_PENDING });
     
-    const groups = firebase.database().ref('messages/');
+    const groups = firebase.database().ref('messages/').limitToLast(50);
 
     groups.once("value")
     .then((snapshot) => {
@@ -35,7 +35,8 @@ export const sendMessage = (post, accountColor) =>
         const m = {
             name: localStorage.getItem('userName'),
             message: post,
-            accountColor: accountColor
+            accountColor: accountColor,
+            wasCreated: new Date().toString()
         }
         const firebase = getFirebase()
         firebase.database().ref(`messages/`)

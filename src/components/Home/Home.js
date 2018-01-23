@@ -90,10 +90,14 @@ class Home extends Component {
           className="message">
         <span 
           style={{color: m.accountColor ? m.accountColor : 'lightgreen'}} 
-          className="name">>: {m.name.split("@")[0]}</span> : 
+          className="name">{m.wasCreated ? new Date(m.wasCreated).getHours() + ":" + new Date(m.wasCreated).getMinutes() : ''} > {m.name.split("@")[0]}</span> : 
         <span 
           // style={{border: m.accountColor ? m.accountColor : 'lightgreen'}}  
-          className="m"> {m.message}</span>
+          className="m">{m.message}</span>
+          <span 
+          style={{ float: 'right' }}
+          // style={{border: m.accountColor ? m.accountColor : 'lightgreen'}}  
+          className="m"> </span>
       </p>
     )) : [];
     return(

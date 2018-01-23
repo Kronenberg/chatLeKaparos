@@ -45,6 +45,7 @@ function groupReducer(state = initialState, action) {
             }
         }
         case GET_ALL_GROUPS_SUCCESS: {
+            console.log(action.payload);
             var list = [];
             if (!action.payload) {
                 console.log('skip');
@@ -54,12 +55,14 @@ function groupReducer(state = initialState, action) {
                         let message = action.payload[key].message ? action.payload[key].message : '';
                         let name = action.payload[key].name ? action.payload[key].name : '';
                         let accountColor = action.payload[key].accountColor ? action.payload[key].accountColor : '';
+                        let wasCreated = action.payload[key].wasCreated ? action.payload[key].wasCreated : '';
                         if (message.trim().length > 0) {
                             list.push({
                                 message: message,
                                 name: name,
                                 accountColor: accountColor,
-                                key: key
+                                key: key,
+                                wasCreated: wasCreated
                             })
                         }
                     }

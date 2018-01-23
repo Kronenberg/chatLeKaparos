@@ -104,11 +104,16 @@ ul {
 }
 
 .messages {
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 615px;
   width: 100%;
   
 }
+
+.messages::-webkit-scrollbar { 
+  display: none; 
+  }
 .message .m {
   /* color: white;
   background: #86BB71;
