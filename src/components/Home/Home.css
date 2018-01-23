@@ -76,7 +76,7 @@ body {
 
 
 .message .name { 
-  color:black; 
+  color:lightcoral; 
 }
 
 li {
@@ -171,13 +171,18 @@ form {
 }
 
 .hide {
-  animation: hider 3.5s linear alternate infinite;
-  -webkit-animation: hider 3.5s linear alternate infinite;
+  opacity: 0;
+  animation: hider 3.5s linear ;
+  -webkit-animation: hider 3.5s linear;
+}
+
+.REMOVE {
+  display: none;
 }
 
 @keyframes hider {
-  0% { opacity: 1 }
-  100% { opacity: 0 }
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }
 
 @-webkit-keyframes hider {

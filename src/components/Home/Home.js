@@ -120,7 +120,7 @@ class Home extends Component {
             { this.props.groupStatus.pending ? <img style={{width: '100%', height: '100%'}} src="https://media.giphy.com/media/CdhxVrdRN4YFi/giphy.gif" /> : messages }
           </div>
           <form onSubmit={this.sendMessage}>
-               <div className="hide">{this.props.whoIsTyping && this.props.whoIsTyping.user  ? this.props.whoIsTyping.user : '' } typing...</div>
+               <div className={this.props.whoIsTypingStatus.pending ? "hide" : ""}>{this.props.whoIsTyping && this.props.whoIsTyping.user  ? this.props.whoIsTyping.user : '' } typing...</div>
               <input placeholder="Message: " value={this.state.message} onChange={this.getMessage} />
             </form>
           </div>
@@ -148,7 +148,8 @@ const mapStateToProps = (state) => {
       return {
           groupStatus: state.groupReducer,
           auth: state.authReducer,
-          whoIsTyping: state.whoIsTypignReducer.getUser          
+          whoIsTyping: state.whoIsTypignReducer.getUser,
+          whoIsTypingStatus: state.whoIsTypignReducer        
       }
   }
 

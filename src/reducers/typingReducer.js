@@ -4,6 +4,7 @@ import {
 } from '../ActionsTYPES/TYPES';
 
 const initialState = {
+  pending: false,
   setUser: null,
   getUser: null
 }
@@ -14,12 +15,14 @@ function whoIsTypignReducer(state = initialState, action) {
       case WHO_IS_TYPING_GET_USER: {
           return  {
             ...state,
+            pending: false,
             getUser: action.payload
           }
       }
       case WHO_IS_TYPING_SET_USER: {
         return {
           ...state,
+          pending: true,
           setUser: action.payload
     }
   }
