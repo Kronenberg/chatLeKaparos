@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getAllGroups, sendMessage } from '../../actions/senders';
+import { getAllGroups, sendMessage, WhoIsTypingSetUser } from '../../actions/senders';
 import { createAccount } from '../../actions/auth';
 import _ from 'lodash'
 import './Home.css';
@@ -47,8 +47,10 @@ class Home extends Component {
   }
 
   getMessage = (e) => {
+    
     this.setState({ message: e.target.value });
-    console.log('test')
+
+    this.props.WhoIsTypingSetUser(this.state.message);
 
   }
 
@@ -118,6 +120,7 @@ class Home extends Component {
             { this.props.groupStatus.pending ? <img style={{width: '100%', height: '100%'}} src="https://media.giphy.com/media/CdhxVrdRN4YFi/giphy.gif" /> : messages }
           </div>
           <form onSubmit={this.sendMessage}>
+               <div className="hide">{this.props.whoIsTyping && this.props.whoIsTyping.user  ? this.props.whoIsTyping.user : '' } typing...</div>
               <input placeholder="Message: " value={this.state.message} onChange={this.getMessage} />
             </form>
           </div>
@@ -128,6 +131,7 @@ class Home extends Component {
             <input onChange={this.createNameForAccount} placeholder="Type your email address: " />
             <button onClick={this.createAccount}>CREATE ACCOUNT</button>
           </div>
+         
          
           <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
           <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
@@ -143,7 +147,8 @@ class Home extends Component {
 const mapStateToProps = (state) => {
       return {
           groupStatus: state.groupReducer,
-          auth: state.authReducer
+          auth: state.authReducer,
+          whoIsTyping: state.whoIsTypignReducer.getUser          
       }
   }
 
@@ -151,7 +156,8 @@ const  mapDispatchToProps = (dispatch) => {
   return {
     getAllGroups: bindActionCreators(getAllGroups, dispatch),
     sendMessage: bindActionCreators(sendMessage, dispatch),
-    createAccount: bindActionCreators(createAccount, dispatch)
+    createAccount: bindActionCreators(createAccount, dispatch),
+    WhoIsTypingSetUser: bindActionCreators(WhoIsTypingSetUser, dispatch)
   }
 }
   

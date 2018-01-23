@@ -169,3 +169,18 @@ form {
   from, to { border-color: transparent }
   50% { border-color: #0f0; }
 }
+
+.hide {
+  animation: hider 3.5s linear alternate infinite;
+  -webkit-animation: hider 3.5s linear alternate infinite;
+}
+
+@keyframes hider {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
+}
+
+@-webkit-keyframes hider {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
+}

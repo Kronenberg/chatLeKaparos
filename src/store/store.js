@@ -7,7 +7,7 @@ import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk';
 import  { runTheApp } from '../actions/globalActions';
-import  { fetchPosts } from '../actions/events' ;
+import  { fetchPosts, whoIsTypingListener } from '../actions/events' ;
 
 var fbConfig = {
 	apiKey: "AIzaSyAaq4JGtoUlAD7NkctraMGkmAJGOkqhsBo",
@@ -47,5 +47,6 @@ const store = createStore(
 
 store.dispatch(runTheApp())
 store.dispatch(fetchPosts())
+store.dispatch(whoIsTypingListener())
 
 export default store;

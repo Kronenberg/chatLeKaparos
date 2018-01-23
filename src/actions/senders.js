@@ -1,7 +1,9 @@
 import {
     GET_ALL_GROUPS_PENDING,
     GET_ALL_GROUPS_REJECTED,
-    GET_ALL_GROUPS_SUCCESS
+    GET_ALL_GROUPS_SUCCESS,
+    WHO_IS_TYPING_SET_USER,
+    WHO_IS_TYPING_GET_USER
 } from '../ActionsTYPES/TYPES';
 
 import { SAVE_POST, FETCH_POSTS } from '../ActionsTYPES/TYPES'
@@ -50,9 +52,35 @@ export const sendMessage = (post, accountColor) =>
     }
 
 
+    
+export const WhoIsTypingSetUser = (message) => 
+    (dispatch, getState, getFirebase) => {
+
+    if (!localStorage.getItem('userName')) {
+        return;
+    }
+    
+    let data = {
+        user: localStorage.getItem('userName'),
+        message: message
+    }
+
+    const firebase = getFirebase()
+    firebase.database().ref(`whoistyping/`)
+        .set(data)
+        .then(() => {
+            dispatch({ type: WHO_IS_TYPING_SET_USER, payload: 'WHO_IS_TYPING_SUCCESS' })
+        })
+        .catch((err) => {
+            dispatch({ type: SAVE_POST, payload: err })
+        })
+}
+
+
 
 
 export default {
     getAllGroups,
-    sendMessage
+    sendMessage,
+    WhoIsTypingSetUser
 }
