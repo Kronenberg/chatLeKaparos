@@ -23,6 +23,7 @@ body {
   color:#0f0;
   text-shadow: 0 0 6px rgba(0, 255, 0, 0.5);
   margin-left: 10px;
+  border: 1px solid #0f0;
   }
   .generateColorBtn {
     width: 200px;
@@ -33,6 +34,7 @@ body {
     color:#0f0;
     text-shadow: 0 0 6px rgba(0, 255, 0, 0.5);
     margin-left: 10px;
+    border: 1px solid #0f0;
   }
 
   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -122,11 +124,11 @@ input {
   outline: none;
   font-size: 20px;
   padding-left: 10px;
-  border: 1px solid lightgrey;
   margin-left: 6px;
   border-radius: 5px;
   background:#020;
   color:#0f0;
+  border: 1px solid #0f0;
   text-shadow: 0 0 6px rgba(0, 255, 0, 0.5);
   font-family: "Monaco", monospace;
   background: #020 linear-gradient(to bottom, 
@@ -135,7 +137,7 @@ input {
 }
 
 form {
-  border-top: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
 }
 
 
