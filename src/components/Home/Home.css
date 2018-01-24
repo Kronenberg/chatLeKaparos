@@ -103,16 +103,15 @@ ul {
 }
 
 .messages {
-  overflow-y: scroll;
-  overflow-x: hidden;
+
   height: 615px;
   width: 100%;
   
 }
-
+/* 
 .messages::-webkit-scrollbar { 
   display: none; 
-  }
+  } */
 .message .m {
   /* color: white;
   background: #86BB71;
@@ -191,16 +190,25 @@ form {
 
 
 .screen {
-  animation:colorPulse 5s infinite ease-in-out;
+  animation:
+        colorPulse 5s infinite ease-in-out,
+        screenBliking 60s infinite ease-in-out;
   background-image:radial-gradient(#444, #111);
   box-shadow:0 0 5vmin 1vmin #000 inset;
   box-sizing:border-box;
   font-family:'Fira Mono', monospace;
   font-size:20px;
   height: 528px;
-  overflow:scroll;
+  overflow-x: hidden;
+  overflow-y:scroll;
   padding:10vmin;
   width:100vw;
+}
+
+
+
+.screen::-webkit-scrollbar { 
+  display: none;  
 }
 
 .screen:before {
@@ -232,6 +240,29 @@ p:last-child:after {
   content:"_";
 }
 
+
+@keyframes screenBliking {
+  0% {
+    background-image:radial-gradient(#444, #111);
+  }
+  52% {
+    background-image: url("https://media.giphy.com/media/3o85xm8mQLQAMZupfq/giphy.gif ");
+    background-repeat: no-repeat;
+    background-position: 600px 100px;
+    background-size: contain;
+  }
+  53% {
+    background-position: 0 0;
+  }
+  57% {
+    background-image:radial-gradient(#444, #111);
+  }
+  100% {
+    background-image:radial-gradient(#444, #111);
+  }
+}
+
+
 @keyframes colorPulse {
   0%, 100% {
     color:#0c0;
@@ -247,7 +278,7 @@ p:last-child:after {
 @keyframes wave {
   0% {
     box-shadow:0 -10vh 20vh #0c0;
-    top:-100vh;
+    top:-100px;
   }
   48%, 52% {
     box-shadow:0 -10vh 20vh #090;
@@ -257,7 +288,7 @@ p:last-child:after {
   }
   100% {
     box-shadow:0 -10vh 20vh #0c0;
-    top:200vh;
+    top:1000px;
   }
 }
 

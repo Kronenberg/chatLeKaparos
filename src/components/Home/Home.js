@@ -15,7 +15,7 @@ class Home extends Component {
       password: '',
       currentUser: '',
       test: 'asd',
-      accountColor: 'black'
+      accountColor: 'orange'
     }
   }
 
@@ -94,11 +94,9 @@ class Home extends Component {
           style={{color: m.accountColor ? m.accountColor : 'lightgreen'}} 
           className="name">{m.wasCreated ? new Date(m.wasCreated).getHours() + ":" + new Date(m.wasCreated).getMinutes() : ''} > {m.name.split("@")[0]}</span> : 
         <span 
-          // style={{border: m.accountColor ? m.accountColor : 'lightgreen'}}  
           className="m">{m.message}</span>
           <span 
           style={{ float: 'right' }}
-          // style={{border: m.accountColor ? m.accountColor : 'lightgreen'}}  
           className="m"> </span>
       </p>
     )) : [];
