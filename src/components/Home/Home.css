@@ -72,6 +72,7 @@ body {
 
 .sideMenu {
   /* width: 220px;  */
+  padding: 10px;
 }
 
 
@@ -246,10 +247,7 @@ p:last-child:after {
     background-image:radial-gradient(#444, #111);
   }
   52% {
-    background-image: url("https://media.giphy.com/media/3o85xm8mQLQAMZupfq/giphy.gif ");
-    background-repeat: no-repeat;
-    background-position: 600px 100px;
-    background-size: contain;
+    background-image:radial-gradient(rgb(7, 43, 0), #111);
   }
   53% {
     background-position: 0 0;
@@ -288,7 +286,7 @@ p:last-child:after {
   }
   100% {
     box-shadow:0 -10vh 20vh #0c0;
-    top:1000px;
+    top:800px;
   }
 }
 

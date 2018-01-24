@@ -94,7 +94,7 @@ class Home extends Component {
           style={{color: m.accountColor ? m.accountColor : 'lightgreen'}} 
           className="name">{m.wasCreated ? new Date(m.wasCreated).getHours() + ":" + new Date(m.wasCreated).getMinutes() : ''} > {m.name.split("@")[0]}</span> : 
         <span 
-          className="m">{m.message}</span>
+          className="m"> {m.message}</span>
           <span 
           style={{ float: 'right' }}
           className="m"> </span>
@@ -107,7 +107,19 @@ class Home extends Component {
         <div 
         className="sideMenu item">
         <div>
-          <div className="typing"><p>{!localStorage.getItem('userName') ?  'You are not loged in' : "Welcome to Los Kaparos " +  localStorage.getItem('userName')}</p></div>
+        <div>Welcome to next level chat Room ULTRA 2.0</div>
+        <div className="registration" style={{padding: '20px'}}>
+          <div className="form">
+            <input onChange={this.createNameForAccount} placeholder="Type your email address: " />
+            <button onClick={this.createAccount}>CREATE ACCOUNT</button>
+          </div>
+         
+         
+          <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
+          <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
+          <div style={{ color: 'red' }}>{this.props.auth.rejected ? 'Error on server' : ''}</div>
+      </div>
+          <div className="typing"><p>{!localStorage.getItem('userName') ?  'You are not loged in' : "Welcome to ULTRA 2.0 " +  localStorage.getItem('userName')}</p></div>
           <button className="generateColorBtn" style={{ textShadow: this.state.accountColor }} onClick={this.generateRandomColor}>GENERATE RANDOM COLOR TO YOUR MESSAGE</button>
           
         </div>
@@ -124,17 +136,7 @@ class Home extends Component {
           </div>
         </div>
 
-        <div className="registration" style={{padding: '20px'}}>
-          <div className="form">
-            <input onChange={this.createNameForAccount} placeholder="Type your email address: " />
-            <button onClick={this.createAccount}>CREATE ACCOUNT</button>
-          </div>
-         
-         
-          <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
-          <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
-          <div style={{ color: 'red' }}>{this.props.auth.rejected ? 'Error on server' : ''}</div>
-      </div>
+
         
       </div>
     );

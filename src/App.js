@@ -11,11 +11,10 @@ class App extends Component {
       <div>
          <Helmet>
                 <meta charSet="utf-8" />
-                <title>MASA REVIEW APPLICATION</title>
+                <title>NEXT LEVEL CHAT</title>
                 <link rel="canonical" href="https://stark-atoll-57647.herokuapp.com/" />
           </Helmet>
         <nav>
-          <h1>Los Kaparos</h1>
           <ul>
             {/* <li><NavLink to="/" activeClassName="selected">Home</NavLink></li>
             <li><NavLink to="/programs" activeClassName="selected">Programs</NavLink></li>
