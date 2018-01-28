@@ -41,7 +41,7 @@ class Home extends Component {
       } else {
         this.props.sendMessage(this.state.message, this.state.accountColor);
         this.setState({ message: '' });
-        // this.overFlowArea.scrollTo(0, this.overFlowArea.scrollHeight);
+        this.overFlowArea.scrollTo(0, this.overFlowArea.scrollHeight);
       }    
      
   }
@@ -87,25 +87,59 @@ class Home extends Component {
     const messages = this.props.groupStatus ? this.props.groupStatus.groups
     // .reverse()
     .map(m => (
-      <p 
-          key={m.key} 
-          className="message">
-        <span 
-          style={{color: m.accountColor ? m.accountColor : 'lightgreen'}} 
-          className="name">{m.wasCreated ? new Date(m.wasCreated).getHours() + ":" + new Date(m.wasCreated).getMinutes() : ''} > {m.name.split("@")[0]}</span> : 
-        <span 
-          className="m"> {m.message}</span>
+      <p key={m.key} className="message">
+          <div 
+          style={{ background: m.accountColor ? m.accountColor : 'grey' }}
+          className="avatar">
+            {m.name.split("@")[0][0]}
+          </div>
           <span 
-          style={{ float: 'right' }}
-          className="m"> </span>
+          style={{color: m.accountColor ? '#444' : '#444'}} 
+          className="name">{m.name.split("@")[0]} <em style={{ color: "#a0a0a0" }}>{m.wasCreated ? new Date(m.wasCreated).getHours() + ":" + new Date(m.wasCreated).getMinutes() : ''}</em>
+          </span>  
+           <br />
+           <span className="m"> {m.message}</span>
       </p>
     )) : [];
     return(
       <div className="mainContainer">
-  
+<div className="flex-container">
+  <div 
+  className="accountListGlobal"
+  style={{ flexGrow: 1, width: 260 }}>
+      <ul>
+          <li>Michael Bizeps</li>
+          <li>Alexei Scooter</li>
+          <li>Samurai Eli</li>
+          <li>Jenya Ulpan</li>
+        </ul>
+
+  </div>
+  <div 
+  className="chatGlobal"
+  style={{ flexGrow: 14 }}>
+  <div  ref={(elem) => { this.overFlowArea = elem; }} className="chatWindow item">
+          <div >
+            { this.props.groupStatus.pending ? <img style={{width: '100%', height: '100%'}} src="https://media.giphy.com/media/CdhxVrdRN4YFi/giphy.gif" /> : messages }
+          </div>
+          </div>
+          <form onSubmit={this.sendMessage}>
+               <div style={{ margin: 10 }} className={this.props.whoIsTypingStatus.pending ? "hide" : ""}>{this.props.whoIsTyping && this.props.whoIsTyping.user  ? this.props.whoIsTyping.user : '' } typing...</div>
+              <input 
+               placeholder="Message: " 
+               className="inputAreaMain"
+               value={this.state.message} 
+               onChange={this.getMessage} />
+            </form>
+  </div>
+  <div 
+  className="rightSideGlobal"
+  style={{ flexGrow: 1,  width: 50 }}
+  ></div>
+</div>
       <div className="globalConteiner">
         <div 
-        className="sideMenu item">
+        className="">
         <div>
         <div>Welcome to next level chat Room ULTRA 2.0</div>
         <div className="registration" style={{padding: '20px'}}>
@@ -113,27 +147,17 @@ class Home extends Component {
             <input onChange={this.createNameForAccount} placeholder="Type your email address: " />
             <button onClick={this.createAccount}>CREATE ACCOUNT</button>
           </div>
-         
-         
-          <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
-          <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
-          <div style={{ color: 'red' }}>{this.props.auth.rejected ? 'Error on server' : ''}</div>
-      </div>
+          
+            <div style={{ color: 'green' }}>{this.props.auth.pending ? 'Loading...' : ''}</div>
+            <div style={{ color: 'green' }}>{this.props.auth.success ? 'Account was created!!!!!' : ''}</div>
+            <div style={{ color: 'red' }}>{this.props.auth.rejected ? 'Error on server' : ''}</div>
+           </div>
           <div className="typing"><p>{!localStorage.getItem('userName') ?  'You are not loged in' : "Welcome to ULTRA 2.0 " +  localStorage.getItem('userName')}</p></div>
           <button className="generateColorBtn" style={{ textShadow: this.state.accountColor }} onClick={this.generateRandomColor}>GENERATE RANDOM COLOR TO YOUR MESSAGE</button>
           
         </div>
           </div>
-        <div 
-        className="chatWindow item">
-          <div ref={(elem) => { this.overFlowArea = elem; }} className="screen typing">
-            { this.props.groupStatus.pending ? <img style={{width: '100%', height: '100%'}} src="https://media.giphy.com/media/CdhxVrdRN4YFi/giphy.gif" /> : messages }
-          </div>
-          <form onSubmit={this.sendMessage}>
-               <div className={this.props.whoIsTypingStatus.pending ? "hide" : ""}>{this.props.whoIsTyping && this.props.whoIsTyping.user  ? this.props.whoIsTyping.user : '' } typing...</div>
-              <input placeholder="Message: " value={this.state.message} onChange={this.getMessage} />
-            </form>
-          </div>
+        
         </div>
 
 

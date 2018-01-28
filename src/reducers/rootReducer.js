@@ -7,6 +7,7 @@ import groupReducer from './groupReducer';
 import postsReducer from './postsReducer';
 import authReducer from './authReducer';
 import whoIsTypignReducer from './typingReducer.js';
+// import {Reducers} from '@int/react-add-account-redux';
 
 // @ROOT REDUCER
 const rootRecuer =  combineReducers({
