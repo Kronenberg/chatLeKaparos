@@ -106,13 +106,7 @@ class Home extends Component {
 <div className="flex-container">
   <div 
   className="accountListGlobal"
-  style={{ flexGrow: 1, width: 260 }}>
-      <ul>
-          <li>Michael Bizeps</li>
-          <li>Alexei Scooter</li>
-          <li>Samurai Eli</li>
-          <li>Jenya Ulpan</li>
-        </ul>
+  style={{ width: 220 }}>
 
   </div>
   <div 

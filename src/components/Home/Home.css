@@ -16,7 +16,7 @@ body {
 .accountListGlobal {
   color: white;
   width: 100px;
-  background-color: #2e3e51;
+  background-image: url('../../assets/background.jpg');
 }
 
 .chatGlobal {
@@ -112,4 +112,8 @@ body {
 p:hover {
   background: #c4c4c4;
   cursor: pointer;
+}
+
+.name {
+  font-weight: 600;
 }
